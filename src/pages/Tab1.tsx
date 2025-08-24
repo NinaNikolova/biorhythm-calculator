@@ -1,59 +1,39 @@
-import { IonContent, IonDatetime, IonHeader, IonInput, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonDatetime, IonHeader, IonItem, IonLabel, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab1.css';
 import { useState } from 'react';
+import BiorhythmCard from '../components/BiorhythmCard';
 
 const Tab1: React.FC = () => {
-  const [name, setName] = useState<string>("");
-  const [birthDate, setBirthDate] = useState<string>("");
-
-  // Helper function to format date for display
-  const formatDate = (dateString: string) => {
-    if (!dateString) return '';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('bg-BG', { 
-        day: 'numeric',
-      month: 'long', 
-       year: 'numeric', 
-    });
-  };
-
+  const [birthDate, setBirthDate] = useState("");
+  const targetDate = new Date().toISOString
   return (
     <IonPage>
+
+
       <IonHeader>
         <IonToolbar>
           <IonTitle>Tab 1</IonTitle>
         </IonToolbar>
       </IonHeader>
+      
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
-        
-        <IonItem>
-          <IonLabel position="stacked">Name:</IonLabel>
-          <IonInput 
-            value={name}
-            onIonChange={e => setName(e.detail.value!)} 
-            placeholder="Your name" 
-            type='text' 
-          />
-        </IonItem>
-        
         <IonItem>
           <IonLabel position="stacked">Date of birth:</IonLabel>
-          <IonDatetime 
-            presentation="date"
-            value={birthDate} 
-            onIonChange={e => setBirthDate(e.detail.value || "")} 
+          <IonDatetime locale="bg-BG"
+            displayFormat="D MM YYYY"
+            value={birthDate}
+            onIonChange={e => setBirthDate(e.detail.value)}
           />
         </IonItem>
-        
-        <p>Name: {name}</p>
-        <p>Date of Birth: {formatDate(birthDate)}</p>
+
+        <BiorhythmCard
+          targetDate={targetDate}
+          physical={82}
+          emotional={90}
+          intellectual={75}
+        />
+
       </IonContent>
     </IonPage>
   );
