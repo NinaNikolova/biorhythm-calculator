@@ -1,13 +1,17 @@
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
+  IonContent,
+  IonHeader,
   IonIcon,
   IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
+  IonTitle,
+  IonToolbar,
+  setupIonicReact,
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
@@ -31,6 +35,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -48,7 +53,15 @@ import './theme/variables.css';
 setupIonicReact();
 
 const App: React.FC = () => (
+
   <IonApp>
+    <IonHeader>
+      <IonToolbar>
+        <IonTitle>Biorhythms</IonTitle>
+        
+      </IonToolbar>
+    </IonHeader>
+    <IonContent>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
@@ -81,6 +94,7 @@ const App: React.FC = () => (
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
+    </IonContent>
   </IonApp>
 );
 
