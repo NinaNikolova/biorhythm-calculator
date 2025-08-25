@@ -1,21 +1,26 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle } from "@ionic/react";
 import dayjs from 'dayjs'
-function BiorhythmCard({ targetDate, physical, emotional, intellectual }) {
+import {calculateBiorhythms} from '../calculation'
  function formatDate(isoString) {
-    return dayjs(isoString).format("D MMM YYYY");
-  }
+return dayjs(isoString).format("D MMM YYYY");
+}
+function BiorhythmCard({birthDate, targetDate}) {
 
-    return (
+  const { physical, emotional, intellectual } = calculateBiorhythms(birthDate, targetDate);
+
+  return (
     <IonCard className="ion-text-center">
       <IonCardHeader>
-        <IonCardTitle>Date of Birth: {formatDate(targetDate)}</IonCardTitle>
+        <IonCardTitle>Date of Birth: {formatDate(birthDate)}</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <p>Physical: {physical}%</p>
-        <p>Emotional: {emotional}%</p>
-        <p>Intellectual: {intellectual}%</p>
+        <p>Physical: {physical.toFixed(4)}%</p>
+        <p>Emotional: {emotional.toFixed(4)}%</p>
+        <p>Intellectual: {intellectual.toFixed(4)}%</p>
       </IonCardContent>
     </IonCard>
   );
 }
+
+    
 export default BiorhythmCard;
