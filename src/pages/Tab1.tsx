@@ -17,21 +17,23 @@ const Tab1: React.FC = () => {
       </IonHeader>
 
       <IonContent className='ion-padding'>
-        <IonItem>
-          <IonLabel position="stacked">Date of birth:</IonLabel>
-          <IonDatetime locale="bg-BG"
-            // displayFormat="D MMM YYYY"
-            value={birthDate}
-            onIonChange={e => setBirthDate(e.detail.value!)}
-          />
-        </IonItem>
-
         {birthDate&&
         <BiorhythmCard
              birthDate={birthDate}
           targetDate={targetDate}
      
         />}
+        <IonItem>
+          <IonLabel position="stacked">Date of birth:</IonLabel>
+         <IonDatetime 
+    locale="bg-BG"
+    presentation="date"
+    value={birthDate}
+    onIonChange={e => setBirthDate(e.detail.value!)}
+  />
+        </IonItem>
+
+        
 
       </IonContent>
     </IonPage>
