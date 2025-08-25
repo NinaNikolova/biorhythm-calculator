@@ -5,7 +5,7 @@ import BiorhythmCard from '../components/BiorhythmCard';
 
 const Tab1: React.FC = () => {
   const [birthDate, setBirthDate] = useState("");
- const targetDate = new Date().toISOString();
+  const [targetDate, setTargetDate] = useState(new Date().toISOString());
   return (
     <IonPage>
 
@@ -24,12 +24,21 @@ const Tab1: React.FC = () => {
      
         />}
         <IonItem>
-          <IonLabel position="stacked">Date of birth:</IonLabel>
+          <IonLabel position="fixed">Date of birth:</IonLabel>
          <IonDatetime 
     locale="bg-BG"
     presentation="date"
     value={birthDate}
     onIonChange={e => setBirthDate(e.detail.value!)}
+  />
+        </IonItem>
+                <IonItem>
+          <IonLabel position="fixed">Target date:</IonLabel>
+         <IonDatetime 
+    locale="bg-BG"
+    presentation="date"
+    value={targetDate}
+    onIonChange={e => setTargetDate(e.detail.value!)}
   />
         </IonItem>
 
